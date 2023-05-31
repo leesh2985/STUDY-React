@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Banner = () => {
-  return (
+  const [visible, setVisible] = useState(true);
+
+  const getCoupon = () => {
+    alert("10% 할인 쿠폰을 받으셨습니다.");
+  };
+  const closeBanner = (e) => {
+    e.stopPropagation();
+    setVisible(false); // 비동기
+  };
+
+  return visible ? (
     <div
       style={{
         backgroundColor: "orange",
@@ -11,11 +21,12 @@ const Banner = () => {
         justifyContent: "space-around",
         alignItems: "center",
       }}
+      onClick={getCoupon}
     >
       이 곳을 클릭해서 쿠폰을 받아가세요.
-      <button>닫기</button>
+      <button onClick={closeBanner}>닫기</button>
     </div>
-  );
+  ) : null;
 };
 
 export default Banner;
